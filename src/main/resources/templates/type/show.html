@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>Fiche d'un type</title>
+</head>
+<body>
+<div class="container">
+  <div layout:fragment="content">
+    <h1 th:text="${#strings.capitalize(type.type)}">Acteur</h1>
+
+    <h2>Liste des artistes</h2>
+    <ul th:unless="${#lists.isEmpty(type.artists)}">
+      <li th:each="artist : ${type.artists}" th:text="|${artist.firstname} ${artist.lastname}|">Firstname Lastname</li>
+    </ul>
+
+    <nav><a th:href="@{/types}">Retour à l'index</a></nav>
+  </div>
+</div>
+</body>
+</html>

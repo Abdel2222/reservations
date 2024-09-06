@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Fiche d'une représentation</title>
+</head>
+<body>
+<div class="container">
+  <div layout:fragment="content">
+    <article>
+      <h1 th:text="'Représentation du '+${date}+' à '+${heure}">Représentation du 15/01/2020 à 13:30</h1>
+      <p><strong>Spectacle:</strong> <span th:text="${representation.show.title}">Ayiti</span></p>
+
+      <p><strong>Lieu:</strong>
+        <span th:if="${representation.location}" th:text="${representation.location.designation}">
+			        	Art Center
+			        </span>
+        <span th:unless="${representation.location}" th:if="${representation.show.location}"
+              th:text="${representation.show.location.designation}">
+			        	Art Center
+			        </span>
+        <em th:if="${representation.location}==null and ${representation.show.location}==null">
+          à déterminer
+        </em>
+      </p>
+    </article>
+
+    <nav><a th:href="@{/representations}">Retour à l'index</a></nav>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>Liste des localités</title>
+</head>
+<body>
+<div class="container">
+  <div layout:fragment="content">
+    <h1 th:text="${title}">Liste des localités</h1>
+
+    <ul th:unless="${#lists.isEmpty(localities)}">
+      <li th:each="locality : ${localities}">
+        <span th:text="|${locality.postalCode} ${locality.locality}|">1000 Bruxelles</span>
+        <a th:href="@{/localities/{id}(id=${locality.id})}">View</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

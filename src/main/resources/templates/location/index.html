@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>Liste des lieux de spectacle</title>
+</head>
+<body>
+<div class="container">
+  <div layout:fragment="content">
+    <h1 th:text="${title}">Liste des lieux de spectacle</h1>
+
+    <ul th:unless="${#lists.isEmpty(locations)}">
+      <li th:each="location : ${locations}">
+        <span th:text="${location.designation}">Designation</span>
+        <a th:if="${location.website}" th:text="${location.website}"
+           th:href="${location.website}" target="_blank">Website</a>
+        <a th:href="@{/locations/{id}(id=${location.id})}">View</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.mx/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <title>Liste des représentations de spectacle</title>
+</head>
+<body>
+<div class="container">
+  <div layout:fragment="content">
+    <h1 th:text="${title}">Liste des représentations de spectacle</h1>
+
+    <ul th:unless="${#lists.isEmpty(representations)}">
+      <li th:each="representation : ${representations}">
+        <span th:text="${representation.show.title}">Ayiti</span>
+        <span th:if="${representation.location}"
+              th:text="' - '+${representation.location.designation}">- Art Center</span> -
+        <span th:text="${#temporals.format(representation.when,'dd-MM-yyyy')}">12-10-2012</span>
+        <span th:text="${#temporals.format(representation.when,'HH:mm')}">13:30</span>
+        <a th:href="@{/representations/{id}(id=${representation.id})}">View</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
